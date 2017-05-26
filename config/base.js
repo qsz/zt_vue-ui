@@ -8,7 +8,7 @@ let DEV_ENV = 'dev',
 
 
 module.exports = {
-    entry: path.resolve(srcPath, 'app'),
+    entry: path.resolve(srcPath, 'index'),
     extensions: ['.js', '.vue', '.json'],
     alias: {
         'vue$': 'vue/dist/vue.esm.js',

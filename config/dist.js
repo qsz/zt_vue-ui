@@ -8,8 +8,8 @@ function generateConfig(baseConfig) {
     return {
         entry: baseConfig.entry,
         output: {
-            path: path.resolve(__dirname,'../','Views/Mobile'),
-            publicPath: 'Contents/mobile/',
+            path: path.resolve(__dirname,'../','lib'),
+           // publicPath: 'Contents/mobile/',
             filename: 'js/[name].[hash].js',
             chunkFilename: 'js/[name].[hash].js'
         },

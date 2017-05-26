@@ -4,6 +4,7 @@ node_modules/
 dist/
 Views/
 Contents/
+lib/
 __dev__/
 npm-debug.log
 yarn-error.log

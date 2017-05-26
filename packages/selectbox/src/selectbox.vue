@@ -56,5 +56,5 @@
     }
 </script>
 <style>
-    @import "../../../src/css/home.less";
+
 </style>
