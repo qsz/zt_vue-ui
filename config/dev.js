@@ -1,14 +1,14 @@
 let path = require('fast-path'),
     webpack = require('webpack'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function generateConfig(baseConfig) {
     return {
-        entry: [
-            'webpack/hot/dev-server',
-            'webpack-dev-server/client?http://localhost:' + baseConfig.port,
-            baseConfig.entry
-        ],
+        entry: Object.assign({}, {
+            'hotDevServer': 'webpack/hot/dev-server',
+            'port': 'webpack-dev-server/client?http://localhost:' + baseConfig.port,
+        }, baseConfig.entry),
         output: {
             path: path.resolve(__dirname,'../','__dev__'),
             //publicPath: '../Contents/mobile/',
@@ -40,6 +40,10 @@ function generateConfig(baseConfig) {
                 filename: 'index.html',
                 template: './index.html',
                 inject: true
+            }),
+            new ExtractTextPlugin({
+                filename: 'css/[name].[hash].css',
+                allChunks: true
             }),
             new webpack.HotModuleReplacementPlugin()
         ]

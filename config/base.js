@@ -3,12 +3,27 @@ let path = require('fast-path'),
     srcPath = path.resolve(__dirname, '../', 'src'),
     distPath = path.resolve(srcPath, '../', 'dist');
 
+let glob = require("glob");
+let files = glob.sync(path.resolve(__dirname, '../', 'packages/*/index.js'));
+let newEntries = {};
+
+files.forEach(function(f){
+    let name = /.*\/(packages\/.*?\/index)\.js/.exec(f)[1];//得到apps/question/index这样的文件名
+    newEntries[name] = f;
+});
+
+let entry = {
+    "zt_vue-ui": path.resolve(srcPath, 'index.js'),
+    // vendor: ['vue', 'vue-router', '../src/vendor']
+};
+let configEntry = Object.assign({}, entry, newEntries);
+
 let DEV_ENV = 'dev',
     DIST_ENV = 'dist';
 
 
 module.exports = {
-    entry: path.resolve(srcPath, 'index'),
+    entry: entry,
     extensions: ['.js', '.vue', '.json'],
     alias: {
         'vue$': 'vue/dist/vue.esm.js',
@@ -20,8 +35,11 @@ module.exports = {
             loader: 'vue-loader',
             options: {
                 loaders: {
+                    css: ExtractTextPlugin.extract({
+                        use: 'css-loader',
+                        fallback: 'vue-style-loader'
+                    })
                 }
-                // other vue-loader options go here
             }
         },
         {
@@ -29,21 +47,19 @@ module.exports = {
             loader: 'babel-loader',
             exclude: /node_modules/
         },
-        // {
-        //     test: /\.css$/,
-        //     loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })//添加对样式表的处理
-        // },
-        // {
-        //     test: /\.less$/,
-        //     loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less-loader?strictMath&noIeCompat'})
-        // },
         {
             test: /\.css$/,
-            loader: "style-loader!css-loader",
+            use: ExtractTextPlugin.extract({
+                use: 'css-loader',
+                fallback: 'vue-style-loader'
+            })
         },
         {
             test: /\.less$/,
-            loader: "style-loader!css-loader!less-loader",
+            use: ExtractTextPlugin.extract({
+                use: ['css-loader', 'less-loader'],
+                fallback: 'vue-style-loader'
+            })
         },
         {
             test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
@@ -55,4 +71,4 @@ module.exports = {
     },
     srcPath: srcPath,
     distPath: distPath
-}
+};

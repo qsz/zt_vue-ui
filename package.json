@@ -6,10 +6,10 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "package": "npm run cleanViews & webpack --progress --hide-modules --env=dist",
+    "package": "npm run cleanLib & webpack --progress --hide-modules --env=dist",
     "build": "npm run cleanDev & webpack --progress --hide-modules --env=dev",
     "dev": "node build/webpack.dev.conf.js --env=dev",
-    "cleanViews": "rimraf Views/* & rimraf Contents/*",
+    "cleanLib": "rimraf lib/*",
     "cleanDev": "rimraf __dev__/*"
   },
   "dependencies": {

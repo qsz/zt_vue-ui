@@ -3,14 +3,13 @@ let path = require('fast-path'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 function generateConfig(baseConfig) {
     return {
         entry: baseConfig.entry,
         output: {
             path: path.resolve(__dirname,'../','lib'),
            // publicPath: 'Contents/mobile/',
-            filename: 'js/[name].[hash].js',
+            filename: 'js/[name].min.js',
             chunkFilename: 'js/[name].[hash].js'
         },
         resolve: {
@@ -35,7 +34,10 @@ function generateConfig(baseConfig) {
                 template: './index.html',
                 inject: true
             }),
-            new ExtractTextPlugin('css/[name].css'),
+            new ExtractTextPlugin({
+                filename: 'css/[name].[hash].css',
+                allChunks: true
+            }),
             new webpack.DefinePlugin({  //定义全局变量
 
             }),
