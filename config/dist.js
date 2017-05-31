@@ -1,7 +1,6 @@
 let path = require('fast-path'),
     webpack = require('webpack'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 function generateConfig(baseConfig) {
     return {
@@ -29,11 +28,6 @@ function generateConfig(baseConfig) {
         // },
         // devtool: '#eval-source-map',
         plugins:[
-            new HtmlWebpackPlugin({
-                filename: 'index.html',
-                template: './index.html',
-                inject: true
-            }),
             new ExtractTextPlugin({
                 filename: 'css/[name].[hash].css',
                 allChunks: true

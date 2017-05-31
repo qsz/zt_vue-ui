@@ -1,7 +1,8 @@
 let path = require('fast-path'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     srcPath = path.resolve(__dirname, '../', 'src'),
-    distPath = path.resolve(srcPath, '../', 'dist');
+    distPath = path.resolve(srcPath, '../', 'dist'),
+    args = require('minimist')(process.argv.slice(2));
 
 let glob = require("glob");
 let files = glob.sync(path.resolve(__dirname, '../', 'packages/*/index.js'));
@@ -16,19 +17,17 @@ let entry = {
     "zt_vue-ui": path.resolve(srcPath, 'index.js'),
     // vendor: ['vue', 'vue-router', '../src/vendor']
 };
-let configEntry = Object.assign({}, entry, newEntries);
+let configEntry = args.more ? Object.assign({}, entry, newEntries): entry;
 
 let DEV_ENV = 'dev',
     DIST_ENV = 'dist';
 
-
 module.exports = {
-    entry: entry,
+    entry: configEntry,
     extensions: ['.js', '.vue', '.json'],
     alias: {
         'vue$': 'vue/dist/vue.esm.js',
     },
-    port: 9090,
     loaders:[
         {
             test: /\.vue$/,

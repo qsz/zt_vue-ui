@@ -3,13 +3,8 @@ import Selectbox from '../packages/selectbox/index.js';
 const components = [
     Selectbox
 ];
-
 const version = '1.0.0';
-let install;
-install.installed = false;
-install = function(Vue, opts = {}) {
-
-    console.log('sadds?????????????????????????????????????????????????f')
+let install = function(Vue, opts = {}) {
     /* istanbul ignore if */
     if (install.installed) return;
     // locale.use(opts.locale);
@@ -43,10 +38,3 @@ export {
     install,
     Selectbox
 };
-// module.exports = {
-//     version: '1.0.0',
-//     // locale: locale.use,
-//     // i18n: locale.i18n,
-//     install,
-//     Selectbox
-// };

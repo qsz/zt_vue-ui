@@ -4,7 +4,6 @@ var webpack = require('webpack'),
     opn = require('opn'),
     args = require('minimist')(process.argv.slice(2));
 
-
 console.log(args.env,"env");
 
 new WebpackDevServer(webpack(config), config.devServer)

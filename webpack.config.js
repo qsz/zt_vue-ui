@@ -9,7 +9,7 @@ var env = args.env || 'dev';
 console.log(`*****************  env is ${env}  **********************`);
 
 // get base config
-var baseConfig = require(path.join(configPath, 'base'));
+var baseConfig = require(path.join(configPath, 'base.dist'));
 
 // get config
 var configGenerator = require(path.join(configPath, env));
