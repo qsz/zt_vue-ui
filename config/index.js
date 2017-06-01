@@ -13,7 +13,7 @@ files.forEach(function(f){
 });
 
 let entry = {
-    "zt_vue-ui": path.resolve(srcPath, 'app.js'),
+    "zt_vue-ui": path.resolve(srcPath, 'index.js'),
     // vendor: ['vue', 'vue-router', '../src/vendor']
 };
 

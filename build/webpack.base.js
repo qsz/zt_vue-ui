@@ -1,31 +1,24 @@
 let path = require('fast-path'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    docsPath = path.resolve(__dirname, '../', 'docs'),
     srcPath = path.resolve(__dirname, '../', 'src'),
-    args = require('minimist')(process.argv.slice(2));
-
-let glob = require("glob");
-let files = glob.sync(path.resolve(__dirname, '../', 'packages/*/index.js'));
-let newEntries = {};
-
-files.forEach(function(f){
-    let name = /.*\/(packages\/.*?\/index)\.js/.exec(f)[1];//得到apps/question/index这样的文件名
-    newEntries[name] = f;
-});
-
-let entry = {
-    "zt_vue-ui": path.resolve(srcPath, 'index.js'),
-    // vendor: ['vue', 'vue-router', '../src/vendor']
-};
-let configEntry = args.more ? Object.assign({}, entry, newEntries): entry;
-
-let DEV_ENV = 'dev',
-    DIST_ENV = 'dist';
+    pagePath = path.resolve(__dirname, '../', 'packages'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
+            'Assets': path.resolve(docsPath, './', 'assets'),
+            'Components': path.resolve(docsPath, './', 'components'),
+            'Css': path.resolve(docsPath, './', 'css'),
+            'Libs': path.resolve(docsPath, './', 'libs'),
+            'Pages': path.resolve(docsPath, './', 'pages'),
+            'Plugins': path.resolve(docsPath, './', 'plugins'),
+            'Router': path.resolve(docsPath, './', 'router'),
+            'Docs': docsPath,
+            'Packages': pagePath,
+            'Src': srcPath
         },
     },
     module:{
@@ -39,10 +32,6 @@ module.exports = {
                             use: 'css-loader',
                             fallback: 'vue-style-loader'
                         })
-                        // less: ExtractTextPlugin.extract({
-                        //     use: 'less-loader',
-                        //     fallback: 'vue-style-loader'
-                        // })
                     }
                 }
             },

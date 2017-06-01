@@ -30,7 +30,6 @@ let webpackConfig = merge(baseWebpackConfig,{
             allChunks: true
         }),
         new webpack.DefinePlugin({  //定义全局变量
-
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.UglifyJsPlugin({
