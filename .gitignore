@@ -5,6 +5,7 @@ dist/
 Views/
 Contents/
 lib/
+example/
 __dev__/
 npm-debug.log
 yarn-error.log

@@ -1,16 +1,14 @@
 {
-  "name": "zt_vue-ui",
+  "name": "zt_i",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "author": "",
   "license": "ISC",
   "scripts": {
-    "package": "npm run cleanLib & webpack --progress --hide-modules --env=dist",
-    "build": "npm run cleanDev & webpack --progress --hide-modules --env=dev",
-    "dev": "node build/webpack.dev.conf.js --env=dev",
-    "cleanLib": "rimraf lib/*",
-    "cleanDev": "rimraf __dev__/*"
+    "package": "node build/package.js",
+    "docs": "node build/docs.js",
+    "dev": "node build/server.js"
   },
   "dependencies": {
     "vue": "^2.2.1",
@@ -28,6 +26,7 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.4",
+    "less": "^2.7.2",
     "less-loader": "^4.0.3",
     "minimist": "^1.2.0",
     "opn": "^5.0.0",
@@ -36,6 +35,7 @@
     "url-loader": "^0.5.8",
     "vue-blu": "^0.1.9",
     "vue-loader": "^11.1.4",
+    "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.2.1",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
