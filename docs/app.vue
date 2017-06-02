@@ -1,11 +1,11 @@
 <template>
-    <div id="app">
+    <div id="docs">
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-    //import 'mint-ui/lib/style.css';
+    import 'mint-ui/lib/style.css';
 
     let html = document.documentElement;
     window.rem = html.getBoundingClientRect().width / 375 ;

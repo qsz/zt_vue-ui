@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'ZtSelectbox',
+        name: 'zt-selectbox',
         data () {
             return {
 

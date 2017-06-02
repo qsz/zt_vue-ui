@@ -7,8 +7,8 @@
 </template>
 
 <script>
-    import ZtSelectbox from "../../packages/selectbox/src/selectbox";
     import { Indicator } from 'mint-ui';
+    import { ZtLoading,Selectbox } from 'Src/index'
 
     export default {
         name: 'home',
@@ -17,15 +17,18 @@
             }
         },
         components:{
-            ZtSelectbox
-
         },
         methods:{
             load: function () {
-                Indicator.open({
+                console.log(ZtLoading,Indicator)
+                ZtLoading.show({
                     text: '加载中...',
-                    spinnerType: 'triple-bounce'
+                    spinnerType: 'snake',
                 });
+//                Indicator.open({
+//                    text: '加载中...',
+//                    spinnerType: 'snake',
+//                });
             }
         }
     }

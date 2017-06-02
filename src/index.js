@@ -1,4 +1,5 @@
-import Selectbox from 'Packages/selectbox/index';
+import Selectbox from '../packages/selectbox/index';
+import ZtLoading from '../packages/loading/index';
 
 const components = [
     Selectbox
@@ -35,5 +36,6 @@ export {
     // locale: locale.use,
     // i18n: locale.i18n,
     install,
-    Selectbox
+    Selectbox,
+    ZtLoading
 };
