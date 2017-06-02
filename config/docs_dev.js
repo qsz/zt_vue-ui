@@ -49,10 +49,7 @@ let webpackConfig = merge(baseWebpackConfig,{
         new webpack.DefinePlugin({  //定义全局变量
 
         }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true
-        })
+        new webpack.HotModuleReplacementPlugin()
     ]
 });
 module.exports = webpackConfig;

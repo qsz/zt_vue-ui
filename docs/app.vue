@@ -5,6 +5,8 @@
 </template>
 
 <script>
+    //import 'mint-ui/lib/style.css';
+
     let html = document.documentElement;
     window.rem = html.getBoundingClientRect().width / 375 ;
     html.style.fontSize = (window.rem)*20 + 'px';

@@ -13,8 +13,8 @@ let webpackConfig = merge(baseWebpackConfig,{
     output: {
         path: path.resolve(__dirname,'../','lib'),
         //publicPath: '../Contents/mobile/',
-        filename: 'js/[name].[hash].js',
-        chunkFilename: 'js/[name].[hash].js'
+        filename: 'js/[name].js',
+        chunkFilename: 'js/[name].js'
     },
     module: {
         rules: [
@@ -26,7 +26,7 @@ let webpackConfig = merge(baseWebpackConfig,{
     },
     plugins:[
         new ExtractTextPlugin({
-            filename: 'css/[name].[hash].css',
+            filename: 'css/[name].css',
             allChunks: true
         }),
         new webpack.DefinePlugin({  //定义全局变量

@@ -29,7 +29,7 @@ module.exports = {
                 options: {
                     loaders: {
                         css: ExtractTextPlugin.extract({
-                            use: 'css-loader',
+                            use: ['css-loader', 'less-loader'],
                             fallback: 'vue-style-loader'
                         })
                     }
