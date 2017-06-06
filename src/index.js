@@ -1,5 +1,6 @@
 import Selectbox from '../packages/selectbox/index';
 import ZtLoading from '../packages/loading/index';
+import Ninebox from '../packages/nineBox/index';
 
 const components = [
     Selectbox
@@ -37,5 +38,6 @@ export {
     // i18n: locale.i18n,
     install,
     Selectbox,
+    Ninebox,
     ZtLoading
 };

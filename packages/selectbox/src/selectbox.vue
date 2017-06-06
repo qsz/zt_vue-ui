@@ -1,5 +1,5 @@
 <template>
-    <div id="selectBox">
+    <div id="zt-selectbox">
        selectBox
     </div>
 </template>
