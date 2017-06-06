@@ -88,6 +88,7 @@
             overflow: hidden;
             clear: both;
             border-top: 0.05rem solid #DCDCDC;
+            background-color: #ffffff;
         }
 
         li{
