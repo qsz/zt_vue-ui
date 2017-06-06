@@ -10,7 +10,7 @@
                             <i :class="item.tip > 99 ? 'moreTip':''">{{item.tip > 99 ? '99+' : item.tip}}</i>
                         </span>
                     </div>
-                    <span v-if="item.src" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
+                    <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
                 </a>
                 <router-link :to="item.href || '/'" v-else>
                     <div v-if="item.src" class="boxImg" :style="{backgroundImage: 'url(' + item.src + ')'}">
@@ -18,7 +18,7 @@
                             <i :class="item.tip > 99 ? 'moreTip':''">{{item.tip > 99 ? '99+' : item.tip}}</i>
                         </span>
                     </div>
-                    <span v-if="item.src" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
+                    <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
                 </router-link>
             </li>
         </ul>
