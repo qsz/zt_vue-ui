@@ -4,27 +4,27 @@
 
         <transition-group name="flip-ninelist" tag="ul">
             <li v-for="(item,index) in dataItems" :class="parseInt(index+1) % columnNum == 0 ? 'noRightBorder': ''" :style="{width: parseInt(index+1) % columnNum == 0 ? `${width - liWidth*(columnNum-1)}%`: `${liWidth}%`, height:`${parseInt(height/columnNum)}rem`}" ref="nineItem" :key="item">
-                <transition name="boxfade" v-if="type == `edit`">
-                    <div class="itemBoxContain">
-                        <a :href="item.href || '/'" v-if="item.isA">
-                            <div v-if="item.src" class="boxImg" :style="{backgroundImage: 'url(' + item.src + ')'}"></div>
-                            <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
-                        </a>
-                        <router-link :to="item.href || '/'" v-else>
-                            <div v-if="item.src" class="boxImg" :style="{backgroundImage: 'url(' + item.src + ')'}"></div>
-                            <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
-                        </router-link>
+
+                <div class="itemBoxContain" v-if="type == `edit`">
+                    <a :href="item.href || '/'" v-if="item.isA">
+                        <div v-if="item.src" class="boxImg" :style="{backgroundImage: 'url(' + item.src + ')'}"></div>
+                        <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
+                    </a>
+                    <router-link :to="item.href || '/'" v-else>
+                        <div v-if="item.src" class="boxImg" :style="{backgroundImage: 'url(' + item.src + ')'}"></div>
+                        <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
+                    </router-link>
+                </div>
+                <div class="itemBoxContain" v-else>
+                    <transition name="tipfade">
+                        <span :class="item.inTab ? `boxMessageTip boxMessageTipInTab`: `boxMessageTip`" @click="editAjax($event,index)" v-show="type !== `edit`"></span>
+                    </transition>
+                    <div class="aedit">
+                        <div v-if="item.src" class="boxImg" :style="{backgroundImage: 'url(' + item.src + ')'}"></div>
+                        <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
                     </div>
-                </transition>
-                <transition name="boxfade" v-else>
-                    <div class="itemBoxContain">
-                        <span :class="item.inTab ? `boxMessageTip boxMessageTipInTab`: `boxMessageTip`" @click="editAjax($event,index)"></span>
-                        <div class="aedit">
-                            <div v-if="item.src" class="boxImg" :style="{backgroundImage: 'url(' + item.src + ')'}"></div>
-                            <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
-                        </div>
-                    </div>
-                </transition>
+                </div>
+
             </li>
         </transition-group>
 
@@ -78,11 +78,9 @@
         methods: {
             editAjax: function(event,index){
                 if(this.type == 'add' && !this.items[index].inTab){
-                    console.log(this.$refs.nineItem[index].style,this.items[index].inTab);
                     this.editFuc(index);
                 }
                 if(this.type == 'delete'){
-                    console.log(this.$refs.nineItem[index].style,this.items[index].inTab);
                     this.editFuc(index);
                 }
 
@@ -223,7 +221,25 @@
             color: #fff;
             font-size: 0.8rem;
             transform-origin: 50% 50%;
-            /*transition: transform 0.2s linear 0.4s;*/
+            transition: transform 0.2s linear 0.4s;
+        }
+
+        .tipfade-enter-active, .tipfade-leave-active {
+            transition: opacity .5s
+        }
+        .tipfade-enter, .tipfade-leave-active {
+            opacity: 0
+        }
+
+        .flip-ninelist-enter, .flip-ninelist-leave-active {
+            opacity: 0;
+            transform: scale(0);
+        }
+        .flip-ninelist-leave-active {
+            position: absolute;
+        }
+        .flip-ninelist-move {
+            transition: transform 1s;
         }
     }
     .zt-editAddNinebox {
@@ -249,23 +265,5 @@
             background: url("https://res.astronergy.com/Astronergy.Static/src/mobile/1.0.0/img/shanchu.png") no-repeat;
             background-size: 100% 100%;
         }
-    }
-
-    .flip-ninelist-enter, .flip-ninelist-leave-active {
-        opacity: 0;
-        transform: scale(0);
-    }
-    .flip-ninelist-leave-active {
-        position: absolute;
-    }
-    .flip-ninelist-move {
-        transition: transform 1s;
-    }
-
-    .boxfade-enter-active, .boxfade-leave-active {
-        transition: opacity .5s
-    }
-    .boxfade-enter, .boxfade-leave-active {
-        opacity: 0
     }
 </style>

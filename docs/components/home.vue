@@ -10,11 +10,19 @@
 
         <!--<zt-selectbox></zt-selectbox>-->
 
-
         <div id="demo">
             <button v-on:click="show = !show">
                 Toggle
             </button>
+            <transition name="fade">
+                <p v-if="show">hello</p>
+            </transition>
+            <transition name="fade">
+                <p v-if="show">hello</p>
+            </transition>
+            <transition name="fade">
+                <p v-if="show">hello</p>
+            </transition>
             <transition name="fade">
                 <p v-if="show">hello</p>
             </transition>
@@ -119,7 +127,6 @@
                 info.inTab = false;
                 this.listInfo2.push(info)
             }
-
         }
     }
 </script>
@@ -129,6 +136,9 @@
     }
     .fade-enter, .fade-leave-active {
         opacity: 0
+    }
+    p{
+        background-color: #42b983;
     }
 
 </style>
