@@ -3,7 +3,8 @@ import ZtLoading from '../packages/loading/index';
 import Ninebox from '../packages/nineBox/index';
 
 const components = [
-    Selectbox
+    Selectbox,
+    Ninebox
 ];
 const version = '1.0.0';
 const install = function(Vue, opts = {}) {

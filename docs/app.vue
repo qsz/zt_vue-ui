@@ -28,5 +28,6 @@
     }
 </script>
 <style>
+    @import "Css/reset.less";
 
 </style>
