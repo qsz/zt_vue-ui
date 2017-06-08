@@ -4,8 +4,10 @@
 
         <transition-group name="flip-ninelist" tag="ul">
             <li v-for="(item,index) in dataItems" :class="parseInt(index+1) % columnNum == 0 ? 'noRightBorder': ''" :style="{width: parseInt(index+1) % columnNum == 0 ? `${width - liWidth*(columnNum-1)}%`: `${liWidth}%`, height:`${parseInt(height/columnNum)}rem`}" ref="nineItem" :key="item">
-
                 <div class="itemBoxContain" v-if="type == `edit`">
+                    <transition name="tipfade">
+                        <span :class="item.inTab ? `boxMessageTip boxMessageTipInTab`: `boxMessageTip`" @click="editAjax($event,index)" v-show="type !== `edit`"></span>
+                    </transition>
                     <a :href="item.href || '/'" v-if="item.isA">
                         <div v-if="item.src" class="boxImg" :style="{backgroundImage: 'url(' + item.src + ')'}"></div>
                         <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
@@ -24,7 +26,6 @@
                         <span v-if="item.name" :tran="item.tran || ''" class="boxName">{{item.name}}</span>
                     </div>
                 </div>
-
             </li>
         </transition-group>
 
@@ -118,16 +119,29 @@
         height: auto;
         overflow: hidden;
 
+
         h2{
+            position: relative;
             font-size: 0.7rem;
-            text-align: center;
+            text-align: left;
             line-height: 1.5rem;
             height: 1.5rem;
-            background-color: #F1F1F1;
-            /*border-top: 0.05rem solid #DCDCDC;*/
-            padding-left: 0.5rem;
+            background-color: inherit;
+            margin-left: 1rem;
             font-weight: 600;
         }
+        h2::before{
+            content: " ";
+            display: inline-block;
+            height: .7rem;
+            top: .4rem;
+            left: -.4rem;
+            position: absolute;
+            width: .2rem;
+            background-color: #1E90FF;
+            margin-right: 0.3rem;
+        }
+
         ul{
             width: 100%;
             height: 100%;
@@ -215,22 +229,19 @@
             position: absolute;
             width: 18%;
             height: 18%;
-            transform: scale(0);
             top: 6%;
             right: 6%;
             color: #fff;
             font-size: 0.8rem;
             transform-origin: 50% 50%;
-            transition: transform 0.2s linear 0.4s;
         }
-
         .tipfade-enter-active, .tipfade-leave-active {
-            transition: opacity .5s
+            transition: all .5s linear .4s;
         }
         .tipfade-enter, .tipfade-leave-active {
-            opacity: 0
+            opacity: 0;
+            transform: scale(0);
         }
-
         .flip-ninelist-enter, .flip-ninelist-leave-active {
             opacity: 0;
             transform: scale(0);
