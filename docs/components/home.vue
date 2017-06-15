@@ -27,8 +27,6 @@
                 <p v-if="show">hello</p>
             </transition>
         </div>
-
-
     </div>
 </template>
 
