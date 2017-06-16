@@ -1,32 +1,33 @@
 <template>
     <div class="homepage">
-        home
-        <zt-ninebox :items="listInfo1" columnNum="4" lineNum="2" :type="typee" title="edit"></zt-ninebox>
-        <button @click="load">点击编辑</button>
-        <button @click="load2">点击完成</button>
+        <zt-search :result="result"></zt-search>
+        <!--home-->
+        <!--<zt-ninebox :items="listInfo1" columnNum="4" lineNum="2" :type="typee" title="edit"></zt-ninebox>-->
+        <!--<button @click="load">点击编辑</button>-->
+        <!--<button @click="load2">点击完成</button>-->
 
-        <zt-ninebox :items="listInfo2" columnNum="4" lineNum="2" type="add" title="add" :editFuc="fucc2"></zt-ninebox>
-        <zt-ninebox :items="listInfo3" columnNum="4" lineNum="2" type="delete" title="delete" :editFuc="fucc3"></zt-ninebox>
+        <!--<zt-ninebox :items="listInfo2" columnNum="4" lineNum="2" type="add" title="add" :editFuc="fucc2"></zt-ninebox>-->
+        <!--<zt-ninebox :items="listInfo3" columnNum="4" lineNum="2" type="delete" title="delete" :editFuc="fucc3"></zt-ninebox>-->
 
-        <!--<zt-selectbox></zt-selectbox>-->
+        <!--&lt;!&ndash;<zt-selectbox></zt-selectbox>&ndash;&gt;-->
 
-        <div id="demo">
-            <button v-on:click="show = !show">
-                Toggle
-            </button>
-            <transition name="fade">
-                <p v-if="show">hello</p>
-            </transition>
-            <transition name="fade">
-                <p v-if="show">hello</p>
-            </transition>
-            <transition name="fade">
-                <p v-if="show">hello</p>
-            </transition>
-            <transition name="fade">
-                <p v-if="show">hello</p>
-            </transition>
-        </div>
+        <!--<div id="demo">-->
+            <!--<button v-on:click="show = !show">-->
+                <!--Toggle-->
+            <!--</button>-->
+            <!--<transition name="fade">-->
+                <!--<p v-if="show">hello</p>-->
+            <!--</transition>-->
+            <!--<transition name="fade">-->
+                <!--<p v-if="show">hello</p>-->
+            <!--</transition>-->
+            <!--<transition name="fade">-->
+                <!--<p v-if="show">hello</p>-->
+            <!--</transition>-->
+            <!--<transition name="fade">-->
+                <!--<p v-if="show">hello</p>-->
+            <!--</transition>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -34,11 +35,13 @@
     import { Indicator } from 'mint-ui';
     import { ZtLoading,Selectbox } from 'Src/index'
     import ZtNinebox from "../../packages/nineBox/src/nineBox";
+    import ZtSearch from "../../packages/search/src/search";
 
     export default {
         name: 'home',
         data () {
             return {
+                result:[1,2,3,4,5],
                 show: true,
                 typee: 'edit',
                 listInfo1:[
@@ -99,6 +102,7 @@
             }
         },
         components:{
+            ZtSearch,
             ZtNinebox
         },
         methods:{

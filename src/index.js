@@ -1,7 +1,7 @@
 import Selectbox from '../packages/selectbox/index';
 import ZtLoading from '../packages/loading/index';
 import Ninebox from '../packages/nineBox/index';
-import ZtSearch from '../packages/search/index';
+import Search from '../packages/search/index';
 
 const components = [
     Selectbox,
@@ -41,6 +41,6 @@ export {
     install,
     Selectbox,
     Ninebox,
-    ZtSearch,
+    Search,
     ZtLoading
 };
