@@ -3,7 +3,6 @@
         <span class="zt-cell-pic"></span><div class="zt-cell-name"><span>软蛋杜兰特</span><span>抱大腿</span></div>
     </div>
 </template>
-
 <script>
     export default {
         name: 'zt-cell',

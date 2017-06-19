@@ -27,6 +27,13 @@ let webpackConfig = merge(baseWebpackConfig,{
         hot:true,
         noInfo: true,
         port: baseConfig.port,
+        proxy: {
+            '/api': {
+                target: 'http://localhost',
+                pathRewrite: {'^/api' : '/Astronergy.UserMapping'},
+                changeOrigin: true
+            }
+        }
     },
     module: {
         rules: [
