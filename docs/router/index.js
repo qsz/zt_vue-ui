@@ -14,17 +14,14 @@ export default new Router({
             component: UserInfo
         },
         {
-            path: '/home',
+            path: '/search',
             name: 'Home',
-            component: Home,
-            children: [
-                {
-                    path: '*',
-                    name: 'Home',
-                    component: Home
-                },
-
-            ]
+            component: Home
+        },
+        {
+            path: '/search/:searchid',
+            name: 'Home',
+            component: Home
         }
     ]
 })

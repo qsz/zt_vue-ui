@@ -25,15 +25,16 @@
                             HRUserid: item.HRUserid || '暂无',
                             Post: item.Post || '暂无',
                             UName: item.UName || '暂无',
-                            USERID: item.USERID || '暂无',
+                            USERID: item.USERID || '',
                             mobilePhone: item.mobilePhone || '暂无',
                             p6000: item.p6000 || '暂无',
-                            poffice: item.poffice || '暂无'
+                            poffice: item.poffice || '暂无',
+                            OName: item.OName || '正泰新能源'
                         }
                     })
 
                 }else if(item.OID && item.PID){
-                    this.$router.push(`/home/${item.OID}`)
+                    this.$router.push(`/search/${item.OID}`)
                 }
             }
         }

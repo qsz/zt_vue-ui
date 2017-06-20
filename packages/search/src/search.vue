@@ -3,14 +3,14 @@
         <div :class="type == 'button' ? 'zt-searchbar zt-long-searchbar':'zt-searchbar'">
             <div class="zt-searchbar-inner" @click="turnSearch">
                 <i class="ztui-search zt-searchbar-icon"></i>
-                <span v-show="searchText.length == 0">搜索</span>
+                <span v-show="!currentValue">搜索</span>
                 <input type="button" v-show="type == 'button'"/>
-                <input type="search" v-show="type == 'search'" ref="searchInput" @keyup="search" @search="search"/>
+                <input type="search" v-show="type == 'search'" ref="searchInput" @keyup="search" @search="search" v-model="currentValue"/>
             </div>
             <div class="zt-searchbar-btn" v-show="type == 'search'" @click="turnButton">取消</div>
         </div>
         <div style="height: 2.2rem;width: 100%;display: block" v-show="type == 'button'"></div>
-        <div class="zt-search-list zt-search-warp" v-show="type == 'search' && searchText.length == 0" @click="turnButton"></div>
+        <div class="zt-search-list zt-search-warp" v-show="type == 'search' && !currentValue" @click="turnButton"></div>
 
         <div class="zt-search-list-warp" style="margin-left: .5rem">
             <slot>
@@ -27,16 +27,33 @@
         data () {
             return {
                 type: 'button',
-                searchText: ''
+                currentValue: this.value
             }
         },
         props:{
             result:{
                 type: Array
+            },
+            searchFuc: {
+                type: Function
+            },
+            cancelFuc: {
+                type: Function
+            },
+            value: {
+                type: String
             }
         },
         components:{
             ZtCell
+        },
+        watch:{
+            currentValue(val) {
+                this.$emit('input', val);
+            },
+            value(val) {
+                this.currentValue = val;
+            }
         },
         methods:{
             turnSearch: function () {
@@ -50,17 +67,22 @@
             },
             turnButton: function () {
                 this.type = 'button';
-                this.$refs.searchInput.value = '';
+                this.currentValue = '';
                 this.searchText = '';
+                if(this.cancelFuc){
+                    this.cancelFuc()
+                }
             },
             search: function (e) {
-                this.searchText = e.target.value;
+                //this.searchText = e.target.value;
                 let keycode = e.keyCode;
-                if(keycode=='13') {
-                    e.preventDefault();
-                    //请求搜索接口
+                if(this.searchFuc){
+                    if(keycode=='13') {
+                        e.preventDefault();
+                        return;
+                    }
+                    this.searchFuc(this.currentValue);
                 }
-
             }
         }
     }
@@ -158,7 +180,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(105,105,105,0.5);
-            transition: all .5s ease;
+            /*transition: all .5s ease;*/
         }
     }
 
